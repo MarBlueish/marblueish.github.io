@@ -42,5 +42,5 @@ jobs:
           API_KEY: ${{ secrets.API_KEY }}
         run: |
           echo "Using API Key in this step"
-          # Exemplo de uso do API_KEY
-          # curl -H "Authorization: Bearer $API_KEY" https://api.example.com/endpoint
+          # Substitua o URL e endpoint pelo real que você deseja acessar
+          curl -H "Authorization: Bearer $API_KEY" https://api.example.com/endpoint
