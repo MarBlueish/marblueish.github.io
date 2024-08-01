@@ -43,4 +43,5 @@ jobs:
         run: |
           echo "Using API Key in this step"
           # Substitua o URL e endpoint pelo real que você deseja acessar
-          curl -H "Authorization: Bearer $API_KEY" https://api.example.com/endpoint
+          curl -H "Authorization: Bearer $API_KEY" https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1
+
