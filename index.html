@@ -1,1 +1,155 @@
-test
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+</head>
+<body>
+<div class="wrapper">
+  <div class="header">
+    <img src="images/image1.png" alt="imagem1" id="imagemlogo">
+    <ul>
+      <li>Top Movies</li>
+      <li>About Page</li>
+      <li><a href="https://developer.themoviedb.org/docs/getting-started" class="custom-link">API Documentation</a></li>
+    </ul>
+  </div>
+  <hr>
+
+  <p>TOP MOVIES IN THE CINEMA RIGHT NOW</p>
+
+  <div class="movies-container">
+    <div class="movie">
+      <img src="images/loading.png" alt="loading" id="imagem1">
+      <h1>Movie Title</h1>
+      <h2>Release Date</h2>
+    </div>
+    <div class="movie">
+      <img src="images/loading.png" alt="loading" id="imagem2">
+      <h1>Movie Title</h1>
+      <h2>Release Date</h2>
+    </div>
+    <div class="movie">
+      <img src="images/loading.png" alt="loading" id="imagem3">
+      <h1>Movie Title</h1>
+      <h2>Release Date</h2>
+    </div>
+    <div class="movie">
+      <img src="images/loading.png" alt="loading" id="imagem4">
+      <h1>Movie Title</h1>
+      <h2>Release Date</h2>
+    </div>
+    <div class="movie">
+      <img src="images/loading.png" alt="loading" id="imagem5">
+      <h1>Movie Title</h1>
+      <h2>Release Date</h2>
+    </div>
+    <div class="movie">
+      <img src="images/loading.png" alt="loading" id="imagem6">
+      <h1>Movie Title</h1>
+      <h2>Release Date</h2>
+    </div>
+    <div class="movie">
+      <img src="images/loading.png" alt="loading" id="imagem7">
+      <h1>Movie Title</h1>
+      <h2>Release Date</h2>
+    </div>
+    <div class="movie">
+      <img src="images/loading.png" alt="loading" id="imagem9">
+      <h1>Movie Title</h1>
+      <h2>Release Date</h2>
+    </div>
+    <div class="movie">
+      <img src="images/loading.png" alt="loading" id="imagem10">
+      <h1>Movie Title</h1>
+      <h2>Release Date</h2>
+    </div>
+    <div class="movie">
+      <img src="images/loading.png" alt="loading" id="imagem11">
+      <h1>Movie Title</h1>
+      <h2>Release Date</h2>
+    </div>
+    <div class="movie">
+      <img src="images/loading.png" alt="loading" id="imagem12">
+      <h1>Movie Title</h1>
+      <h2>Release Date</h2>
+    </div>
+    <div class="movie">
+      <img src="images/loading.png" alt="loading" id="imagem13">
+      <h1>Movie Title</h1>
+      <h2>Release Date</h2>
+    </div>
+    <div class="movie">
+      <img src="images/loading.png" alt="loading" id="imagem14">
+      <h1>Movie Title</h1>
+      <h2>Release Date</h2>
+    </div>
+    <div class="movie">
+      <img src="images/loading.png" alt="loading" id="imagem15">
+      <h1>Movie Title</h1>
+      <h2>Release Date</h2>
+    </div>    <div class="movie">
+    <img src="images/loading.png" alt="loading" id="imagem16">
+    <h1>Movie Title</h1>
+    <h2>Release Date</h2>
+  </div>    <div class="movie">
+    <img src="images/loading.png" alt="loading" id="imagem17">
+    <h1>Movie Title</h1>
+    <h2>Release Date</h2>
+  </div>
+
+
+
+  </div>
+</div>
+</body>
+<script>
+  function updateMoviesOnPage(movies) {
+    const movieContainers = document.querySelectorAll('.movie');
+
+    movies.forEach((movie, index) => {
+      const container = movieContainers[index]; // seleciona nos moviecontainers criados acima e indexa
+
+      const titleElement = container.querySelector('h1'); // troca o titulo
+      const releaseDateElement = container.querySelector('h2'); // seleciona a release date
+      const imageElement = container.querySelector('img'); // troca o filme
+
+      titleElement.textContent = movie.title;
+      releaseDateElement.textContent = "Release Date: " + movie.release_date;
+
+      imageElement.src = 'https://image.tmdb.org/t/p/w500' + movie.poster_path;
+      imageElement.alt = movie.title;
+    });
+  }
+
+  async function fetchMovies() {
+    const options = {
+      method: 'GET',
+      headers: {
+        accept: 'application/json',
+        Authorization: 'API_KEY'
+      }
+    };
+
+    try {
+      const response = await fetch('https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1', options);
+      const data = await response.json();
+      const movies = data.results;
+
+      updateMoviesOnPage(movies);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  window.addEventListener('load', () => {
+    fetchMovies();
+  });
+</script>
+</html>
